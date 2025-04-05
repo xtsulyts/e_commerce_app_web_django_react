@@ -6,6 +6,7 @@ from .serializers import UserSerializer, UserLoginSerializer, UserSerializer, Va
 from .models import Product, Inventory, Variant
 from django.contrib.auth import get_user_model
 from rest_framework.decorators import action
+from django.db import models 
 
 # Obtenemos el modelo de usuario personalizado (o el default de Django)
 User = get_user_model()
@@ -96,23 +97,38 @@ class LoginAPIView(generics.GenericAPIView):
         2. Genera/recupera el token del usuario.
         3. Devuelve datos públicos del usuario + token.
         """
-        serializer = self.get_serializer(data=request.data)
+        serializer = self.get_serializer(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)  # Lanza 400 si hay errores
         user = serializer.validated_data['user']  # Objeto User desde el serializer
 
         # Obtener o crear token (evita crear múltiples tokens por usuario)
         token, _ = Token.objects.get_or_create(user=user)
+        print('token', token)
 
         return Response({
-            'user': UserProfileSerializer(user).data,
+            'user': UserSerializer(user).data,
             'token': token.key
         }, status=status.HTTP_200_OK)
+    
+#VERSION SEGURA INTERFAZ DRF USA "SESIONES" PARA AUTENTICACION NO TOKEN
+    
+# class ProfileAPIView(generics.RetrieveUpdateAPIView):
+#     serializer_class = UserSerializer
+#     permission_classes = [permissions.IsAuthenticated]
+    
+#     def get_object(self):
+#         return self.request.user
+
+
+#VERSION PARA PRUEBAS NO USAR EN PRODUCCION
 class ProfileAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = []  # Temporalmente sin autenticación
     
     def get_object(self):
-        return self.request.user
+        # Simula un usuario para pruebas (eliminar en producción)
+        from django.contrib.auth import get_user_model
+        return get_user_model().objects.first()  # Devuelve el primer usuario
     
 class ProductViewSet(viewsets.ModelViewSet):
     """

@@ -108,23 +108,6 @@ class UserSerializer(serializers.ModelSerializer):
             validated_data['password'] = make_password(validated_data['password'])
         return super().update(instance, validated_data)
 
-class UserCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = [
-            'username',
-            'password',
-            'email',
-            'first_name',
-            'last_name',
-            # Campos básicos para creación
-        ]
-        extra_kwargs = {
-            'password': {'write_only': True}
-        }
-
-    def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
         return user
 
 class UserUpdateSerializer(serializers.ModelSerializer):
@@ -172,13 +155,18 @@ class UserLoginSerializer(serializers.Serializer):
                 {"email": "Formato de email inválido."},
                 code='invalid_email'
             )
-
+        print("Email recibido:", email)
+        print("Password recibido:", password)  # ¡No lo hagas en producción!
+        print("Usuario existe:", User.objects.filter(email=email).exists())
+        
         # Autenticación con Django
         user = authenticate(
             request=self.context.get('request'),
-            username=email,
-            password=password
+            email=attrs.get('email'),
+            password=attrs.get('password')
         )
+        print("Usuario autenticado:", user)  # Agrega esto
+        print("Usuario activo:", user.is_active if user else "No user")  # Y esto
 
         if not user:
             raise serializers.ValidationError(
@@ -256,3 +244,24 @@ class InventorySerializer(serializers.ModelSerializer):
             'updated_at'
         ]
         read_only_fields = ['updated_at', 'variant_info']
+
+
+
+# class UserCreateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = [
+#             'username',
+#             'password',
+#             'email',
+#             'first_name',
+#             'last_name',
+#             # Campos básicos para creación
+#         ]
+#         extra_kwargs = {
+#             'password': {'write_only': True}
+#         }
+
+#     def create(self, validated_data):
+#         user = User.objects.create_user(**validated_data)
+# 
