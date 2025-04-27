@@ -1,6 +1,65 @@
-./venv
-.pyc
+# Entorno de Django
+*.pyc
+__pycache__/
+*.sqlite3
 .env
-./miggrations
-./__init__.pyc
-./__pycache__
+.env.local
+.env.production
+db.sqlite3
+
+# Migraciones de Django (¡cuidado! Normalmente se suben las migraciones, 
+# pero si quieres excluirlas específicamente)
+#**/migrations/*
+
+# Entorno de Python
+venv/
+env/
+.venv/
+.python-version
+pyvenv.cfg
+
+# Next.js
+node_modules/
+.next/
+out/
+.next-env.d.ts
+.next-build-id
+
+# Dependencias y builds
+jspm_packages/
+.npm
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.pnp.*
+.cache/
+dist/
+build/
+
+# Variables de entorno
+*.env*
+!.env.example
+
+# Sistemas operativos
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs y debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pytest_cache/
+coverage/
+.nyc_output/
+
+# Testing
+htmlcov/
+.coverage
