@@ -5,10 +5,17 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useUser } from "../contex/UserContex";
+import Login from "./Login";
 
-const AuthComponent = () => {
+type FormErrors = {
+  email?: string;
+  password?: string;
+  // ...otros campos
+};
+
+const Auth = () => {
   // Hooks para acceder a datos del usuario y enrutamiento
-  const { totalIngresos, totalGastos, saldoTotal, user, logoutUser } =
+  const { user, logoutUser } =
     useUser();
   const router = useRouter();
   // Estados para gestionar el formulario y errores
@@ -17,7 +24,7 @@ const AuthComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState<any>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
  
 
   // Función para manejar el registro
@@ -29,22 +36,23 @@ const AuthComponent = () => {
     }
     // Solicitud HTTP al servidor
     try {
-      const response = await axios.post("http://localhost:8000/register", {
+      const response = await axios.post("http://localhost:8000/register/", {
         username,
         email,
-        password1: password,
-        password2: confirmPassword,
+        password: password,
+        password_confirmation: confirmPassword,
       });
       // Manejo de respuesta exitosa
       if (response.status === 201) {
         alert("Usuario creado con éxito");
         setShowForm(null); // Oculta el formulario
-        router.push("./"); // Redirige al usuario
+        router.push("./pages/home"); // Redirige al usuario
       }
     } catch (error: any) {
       // Manejo de errores
       if (error.response && error.response.data.errors) {
         setErrors(error.response.data.errors); // Almacena errores del servidor
+        console.log(setErrors)
       } else {
         alert("Error en el registro. Revisa los datos."); // Alerta genérica
       }
@@ -145,7 +153,7 @@ const AuthComponent = () => {
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 backdrop-blur-sm z-10">
           
           <div className="relative bg-white/30 backdrop-blur-md rounded-lg shadow-lg p-8 max-w-2xl w-full">
-          <Nav/>  
+          
             {showForm === "signup" ? (
               <>
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
@@ -169,14 +177,14 @@ const AuthComponent = () => {
                     label: "Contraseña",
                     value: password,
                     setValue: setPassword,
-                    error: errors.password1,
+                    error: errors.password,
                     type: "password",
                   },
                   {
                     label: "Confirmar Contraseña",
                     value: confirmPassword,
                     setValue: setConfirmPassword,
-                    error: errors.password2,
+                    error: errors.password_confirmation,
                     type: "password",
                   },
                 ].map(({ label, value, setValue, error, type = "text" }) => (
@@ -223,4 +231,4 @@ const AuthComponent = () => {
   );
 };
 
-export default AuthComponent;
+export default Auth;

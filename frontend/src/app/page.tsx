@@ -1,7 +1,9 @@
 'use client'
 
 import React, { useState } from 'react';
+import { UserProvider } from './contex/UserContex';
 import Home from './pages/home/Home';
+import Auth from './components/Auth';
 //import './index.css';
 
 
@@ -14,13 +16,13 @@ import Home from './pages/home/Home';
  * @property {number} cantidad - Unidades disponibles en inventario
  * @property {string} [imagen] - URL opcional de la imagen del producto
  */
-interface Producto {
-  codigo: string | number;
-  nombre: string;
-  precio: number;
-  cantidad: number;
-  imagen?: string;
-}
+// interface Producto {
+//   codigo: string | number;
+//   nombre: string;
+//   precio: number;
+//   cantidad: number;
+//   imagen?: string;
+// }
 
 /**
  * Componente raíz de la aplicación que maneja el estado global del carrito
@@ -35,7 +37,7 @@ const App: React.FC = () => {
    * Estado que almacena los productos en el carrito
    * @type {[Producto[], React.Dispatch<React.SetStateAction<Producto[]>>]}
    */
-  const [carrito, setCarrito] = useState<Producto[]>([]);
+  // const [carrito, setCarrito] = useState<Producto[]>([]);
 
   /**
    * Función para agregar productos al carrito
@@ -43,15 +45,20 @@ const App: React.FC = () => {
    * @param {Producto} producto - Producto a agregar al carrito
    * @returns {void}
    */
-  const handleAgregarCarrito = (producto: Producto): void => {
-    setCarrito([...carrito, producto]);
-  };
+  // const handleAgregarCarrito = (producto: Producto): void => {
+  //   setCarrito([...carrito, producto]);
+  // };
 
   return (
-    <Home 
+    <>
+    <UserProvider>
+    <Auth/>
+    {/* <Home 
       carrito={carrito} 
       handleAgregarCarrito={handleAgregarCarrito} 
-    />
+    /> */}
+    </UserProvider>
+    </>
   );
 };
 

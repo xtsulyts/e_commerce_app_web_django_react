@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from "@/app/components/Header";
+//import Auth from '@/app/components/Auth';
 import ListaProductos from '@/app/components/ProductList';
 import Footer from '@/app/components/Footer';
 import Carrito from '@/app/components/Carrito';
@@ -39,9 +40,11 @@ interface HomeProps {
  * @returns {JSX.Element} Estructura principal de la aplicación
  */
 const Home: React.FC<HomeProps> = ({ carrito, handleAgregarCarrito }) => {
+  
   return (
     <>
       <Header />
+      
       <ListaProductos 
         productos = {productosLista}
         agregarCarrito={handleAgregarCarrito}

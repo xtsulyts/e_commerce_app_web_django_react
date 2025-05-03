@@ -74,6 +74,7 @@ class RegisterAPIView(generics.CreateAPIView):
             },
             status=status.HTTP_201_CREATED,
         )
+    
 class LoginAPIView(generics.GenericAPIView):
     """
     Endpoint para autenticar usuarios y generar tokens.
