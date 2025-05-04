@@ -1,0 +1,67 @@
+.galleryContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 4fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .productCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .productCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .cardHeader {
+    background-color: #f5f5f5;
+    padding: 10px;
+    text-align: right;
+  }
+  
+  .productCodigo {
+    color: #666;
+    font-size: 0.8rem;
+  }
+  
+  .cardBody {
+    padding: 15px;
+  }
+  
+  .productNombre {
+    margin: 0 0 10px 0;
+    color: #333;
+  }
+  
+  .productCantidad {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .cardFooter {
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+
+
+  
+  
+  .producto-imagen {
+    width: 100%;       /* Ocupa todo el ancho del contenedor */
+    height: 200px;     /* Altura fija, puedes cambiarla */
+    object-fit: cover;  /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    border-radius: 8px 8px 0 0; /* Bordes redondeados solo arriba si la imagen está en la parte superior */
+    transition: transform 0.3s ease; /* Efecto suave al hacer hover */
+    
+  }
+
+ .productCantidad.agotado { color: #ff3b30; }
+ .productCantidad.poco-stock { color: #ff9500; }
+ .productCantidad.disponible { color: #34c759; }
