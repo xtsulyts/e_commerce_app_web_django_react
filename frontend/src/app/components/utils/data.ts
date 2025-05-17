@@ -88,7 +88,7 @@ export const productosLista: Producto[] = [
     id: 8, 
     codigo: 1007, 
     nombre: 'Producto G', 
-    cantidad: 8, 
+    cantidad: 2, 
     precio: 90000, 
     imagen: 'https://images.pexels.com/photos/1750045/pexels-photo-1750045.jpeg' 
   },
