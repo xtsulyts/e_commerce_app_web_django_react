@@ -25,7 +25,7 @@ interface ListaProductosProps {
  *   agregarCarrito={agregarAlCarrito}
  * />
  */
-const ListaProductos: React.FC<ListaProductosProps> = ({ 
+const ProductList: React.FC<ListaProductosProps> = ({ 
   productos, 
   agregarCarrito 
 }) => {
@@ -42,4 +42,4 @@ const ListaProductos: React.FC<ListaProductosProps> = ({
   );
 };
 
-export default ListaProductos;
+export default ProductList;

@@ -86,11 +86,11 @@ const Auth = () => {
 
           {/* Título "Your Financial" */}
           <h2 className="text-6xl font-bold text-gray-800 mb-8">
-            Tus Finanzas
+            E-Shoes Shop
           </h2>
 
           <strong className="text-lg text-gray-700">
-            Así están tus consumos:
+            Productos directo de fabrica.
           </strong>
           <span className="text-blue-600 font-semibold text-xl">
             {user?.user}

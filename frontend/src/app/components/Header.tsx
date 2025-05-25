@@ -10,7 +10,7 @@ const Header = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  const menuItems = ['Categorías', 'Ofertas', 'Nuevos', 'Más Vendidos', 'Tiendas Oficiales', 'Ayuda'];
+  const menuItems = ['Productos', 'Ofertas', 'Nuevos', 'Más Vendidos', 'Ayuda'];
 
   useEffect(() => {
     setMounted(true);
@@ -39,8 +39,8 @@ const Header = () => {
       {/* Primera fila */}
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          <FaShopify className="text-yellow-500 text-2xl dark:text-yellow-300" />
-          <h1 className="text-xl font-bold text-gray-800 dark:text-white">E-Commerce</h1>
+          <FaShopify className="text-white text-2xl dark:text-white" />
+          <h1 className="text-xl font-bold text-gray-800 dark:text-white">E-Shop Shoes </h1>
         </div>
 
         <div className="hidden md:flex items-center bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-2 flex-1 max-w-md mx-6">
@@ -82,7 +82,7 @@ const Header = () => {
             <button
               key={item}
               className="whitespace-nowrap px-1 py-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors"
-              onClick={() => console.log(`Click ${item}`)}
+              onClick={() => console.log(`./ ${item}`)}
             >
               {item}
             </button>

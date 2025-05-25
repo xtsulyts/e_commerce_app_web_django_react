@@ -2,9 +2,9 @@ import React from 'react';
 import Header from "@/app/components/Header";
 //import Auth from '@/app/components/Auth';
 import ListaProductos from '@/app/components/ProductList';
-import Footer from '@/app/components/Footer';
 import Carrito from '@/app/components/Carrito';
 import { productosLista } from '@/app/components/utils/data'
+import InventoryComponent from '@/app/components/InvetoryComponent';
 
 /**
  * Interface para representar un producto
@@ -50,7 +50,8 @@ const Home: React.FC<HomeProps> = ({ carrito, handleAgregarCarrito }) => {
         agregarCarrito={handleAgregarCarrito}
         />
       <Carrito carritoItems={carrito} />
-      <Footer />
+     
+  
     </>
   );
 };
