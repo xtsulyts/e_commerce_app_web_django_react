@@ -61,8 +61,8 @@ function Login() {
 
     try {
       await loginUser(email, password);
-      router.push("./pages/home");
-    } catch (err: any) {
+      //router.push("./pages/home");
+    } catch (err: any) {  
       setError(err.message);
       console.log(error)
     }
