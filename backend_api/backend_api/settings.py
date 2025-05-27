@@ -61,6 +61,7 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -99,6 +100,9 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  # Permitir solicitudes desde tu frontend
 ]
+
+# Si necesitas permitir credenciales (cookies, tokens):
+CORS_ALLOW_CREDENTIALS = True
 
 # Configurar orígenes de confianza para solicitudes CSRF
 CSRF_TRUSTED_ORIGINS = [
